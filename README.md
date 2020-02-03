@@ -52,7 +52,7 @@ jacocoTestReport {
 }
 ```
 
-Sekä lisäämällä tiedoston .circleci/config.yml loppuun seuraavat rivit:
+Sekä lisäämällä tiedoston .circleci/config.yml loppuun seuraavat rivit (huomioi sisennys):
 ```
   run: ./gradlew check
   run: ./gradlew jacocoTestReport
@@ -62,8 +62,8 @@ Projektin testauskattavuutta häiritsee nyt se, että myös pääohjelma Main la
 
 Voimme määritellä, että joidenkin pakkausten sisältö jätetään huomioimatta kattavuusraportin generoinnissa.
 
-Luo projektiin uusi pakkaus nimeltä main samalle tasolle kuin ohtu, siirrä pääohjelma luomaasi pakkaukseen ja muuta build.gradle:n jacocoTestReport muotoon:
-
+Luo projektiin uusi pakkaus nimeltä main sijaintiin src/main/java/, siirrä pääohjelma luomaasi pakkaukseen ja muuta build.gradle:n jacocoTestReport muotoon:
+```
 jacocoTestReport {
     reports {
         xml.enabled true
@@ -76,4 +76,4 @@ jacocoTestReport {
         }))
     }
 }
-
+```
