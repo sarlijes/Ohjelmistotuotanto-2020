@@ -54,9 +54,9 @@ jacocoTestReport {
 
 Sekä lisäämällä tiedoston .circleci/config.yml loppuun seuraavat rivit (huomioi sisennys):
 ```
-  run: ./gradlew check
-  run: ./gradlew jacocoTestReport
-  run: bash <(curl -s https://codecov.io/bash)
+    - run: ./gradlew check
+    - run: ./gradlew jacocoTestReport
+    - run: bash <(curl -s https://codecov.io/bash)
 ```
 Projektin testauskattavuutta häiritsee nyt se, että myös pääohjelma Main lasketaan testikattavuuteen.
 
