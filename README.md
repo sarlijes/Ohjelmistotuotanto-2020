@@ -6,13 +6,13 @@ First assignments (2-13) at https://github.com/sarlijes/ohtu-2020-viikko1
 # Muistiinpanot
 
 
-Komento | Mitä tekee
+Komento | Toiminnallisuus
 `cmd //c tree` | puu
-`` | 
-`` | 
-`` | 
-`` | 
-`` | 
+`` | test
+`` | test
+`` | test
+`` | test
+`` | test
 
 cmd //c tree
 
