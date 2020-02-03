@@ -7,6 +7,7 @@ First assignments (2-13) at https://github.com/sarlijes/ohtu-2020-viikko1
 
 
 Komento | Toiminnallisuus
+--- | --- 
 `cmd //c tree` | puu
 `` | test
 `` | test
