@@ -5,6 +5,15 @@ First assignments (2-13) at https://github.com/sarlijes/ohtu-2020-viikko1
 
 # Muistiinpanot
 
+
+Komento | Mitä tekee
+`cmd //c tree` | puu
+`` | 
+`` | 
+`` | 
+`` | 
+`` | 
+
 cmd //c tree
 
 `cmd //c tree`
