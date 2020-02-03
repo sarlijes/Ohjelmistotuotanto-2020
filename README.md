@@ -3,8 +3,7 @@ Course assignments for http://ohjelmistotuotanto-hy-avoin.github.io/
 
 First assignments (2-13) at https://github.com/sarlijes/ohtu-2020-viikko1
 
-# Muistiinpanot
-
+## Muistiinpanot
 
 
 Komento | Toiminnallisuus
@@ -31,13 +30,50 @@ jar {
 }
 ```
 
-CircleCI lisäys:
+## CircleCI lisäys:
 1. Avaa “add project”-välilehti ja valitse “Set Up Project” repositorion vierestä
 1. Valitaan configuraatioksi Linux ja Gradle (Java)
 1. Lisää repositoriosi juureen hakemisto nimeltään .circleci
 1. Tee tiedosto config.yml kansion .circleci sisälle ja kopioi sinne CircleCI:n antama Sample.yml-tiedoston sisältö
+1. Muuta tiedosto käyttämään ./gradlew
 1. Commitoi ja pushaa repositorio GitHubiin
 1. Paina Start Building
 
+## Codecov
 
+Lisää tiedostoon build.gradle:
+
+```
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}
+```
+
+Sekä lisäämällä tiedoston .circleci/config.yml loppuun seuraavat rivit:
+```
+  run: ./gradlew check
+  run: ./gradlew jacocoTestReport
+  run: bash <(curl -s https://codecov.io/bash)
+```
+Projektin testauskattavuutta häiritsee nyt se, että myös pääohjelma Main lasketaan testikattavuuteen.
+
+Voimme määritellä, että joidenkin pakkausten sisältö jätetään huomioimatta kattavuusraportin generoinnissa.
+
+Luo projektiin uusi pakkaus nimeltä main samalle tasolle kuin ohtu, siirrä pääohjelma luomaasi pakkaukseen ja muuta build.gradle:n jacocoTestReport muotoon:
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: ['main/**'])
+        }))
+    }
+}
 
