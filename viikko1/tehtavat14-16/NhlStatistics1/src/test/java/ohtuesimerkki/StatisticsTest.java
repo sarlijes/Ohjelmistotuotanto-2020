@@ -49,4 +49,15 @@ public class StatisticsTest {
         assertEquals(null, stats.search("Jessi"));
     }
 
+    @Test public void teamMetodiPalauttaaOikeanLukumaaran() {
+        assertEquals(3, stats.team("EDM").size());
+        assertEquals(1, stats.team("PIT").size());
+        assertEquals(1, stats.team("DET").size());
+    }
+
+    @Test public void enitenMaalejaTehnytPalauttaaOikein() {
+        assertEquals(35 + 89, stats.topScorers(1).get(0).getPoints());
+    }
+
+
 }
