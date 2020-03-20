@@ -17,9 +17,10 @@ public class Main {
 
         Arrays.stream(playersStats)
                 .filter(p -> p.getNationality().equalsIgnoreCase("FIN"))
-                .sorted(Comparator.comparing(PlayerStat::getName))
+                .sorted(((o1, o2) -> {
+                    return  o2.getPoints() - o1.getPoints();
+                }))
                 .forEach(p -> System.out.println(p));
-
     }
 
 }
