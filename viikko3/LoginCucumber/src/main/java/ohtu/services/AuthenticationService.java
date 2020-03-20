@@ -39,8 +39,34 @@ public class AuthenticationService {
     }
 
     private boolean invalid(String username, String password) {
-        // validity check of username and password
+
+        if (username.length() < 3) {
+            return true;
+        }
+
+        if (username.matches("([a-z])")) {
+            return true;
+        }
+
+        if (userDao.findByName(username) != null) {
+            return true;
+        }
+
+        if (password.length() < 8) {
+            return true;
+        }
+
+        if (!password.matches(".*\\d.*")) {
+            return true;
+        }
 
         return false;
     }
 }
+/*([0-9])\w+
+käyttäjätunnuksen on oltava merkeistä a-z
+koostuva vähintään 3 merkin pituinen merkkijono, joka ei ole vielä käytössä
+
+salasanan on oltava pituudeltaan vähintään 8 merkkiä
+ja se ei saa koostua pelkästään kirjaimista (vihje)
+ */
