@@ -2,21 +2,21 @@
 package ohtu;
 
 public class Counter {
-   int val = 0;
+   int value = 0;
 
    public void increase(){
-        val++;
+        value++;
    } 
    
    public void reset(){
-        val = 0;
+        value = 0;
    }    
    
    public void increment(int a){
-        val += a;
+        value += a;
    } 
    
    public int value(){
-       return val;
+       return value;
    }
 }
