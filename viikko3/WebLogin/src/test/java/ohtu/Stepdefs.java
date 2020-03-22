@@ -21,8 +21,68 @@ public class Stepdefs {
         driver.get(baseUrl);
         WebElement element = driver.findElement(By.linkText("login"));       
         element.click();   
-    }    
-    
+    }
+
+    @Given("command new user is selected")
+    public void registerNewUserIsSelected() {
+        driver.get(baseUrl);
+        WebElement element = driver.findElement(By.linkText("register new user"));
+        element.click();
+    }
+
+    @When("valid username {string} and password {string} and matching password confirmation are entered")
+    public void newUserFormIsFilledWithValidInformation(String username, String password) {
+        assertTrue(driver.getPageSource().contains("Create username and give password"));
+
+        WebElement element = driver.findElement(By.name("username"));
+        element.sendKeys(username);
+        element = driver.findElement(By.name("password"));
+        element.sendKeys(password);
+        element = driver.findElement(By.name("passwordConfirmation"));
+        element.sendKeys(password);
+
+        element = driver.findElement(By.name("signup"));
+        element.submit();
+    }
+
+    @When("valid username {string} and password {string} and non-matching password confirmation {string} are entered")
+    public void newUserFormIsFilledWithNonMatchingPasswords(String username, String password, String passwordConfirmation) {
+        assertTrue(driver.getPageSource().contains("Create username and give password"));
+
+        WebElement element = driver.findElement(By.name("username"));
+        element.sendKeys(username);
+        element = driver.findElement(By.name("password"));
+        element.sendKeys(password);
+        element = driver.findElement(By.name("passwordConfirmation"));
+        element.sendKeys(passwordConfirmation);
+
+        element = driver.findElement(By.name("signup"));
+        element.submit();
+    }
+
+    @Then("new user is created")
+    public void newUserIsCreated() {
+        pageHasContent("Welcome to Ohtu Application!");
+    }
+
+    @Then("user is not created and error message shown about too short username")
+    public void newUserIsNotCreatedForTooShortUsername() {
+        pageHasContent("Create username and give password");
+        pageHasContent("username should have at least 3 characters");
+    }
+
+    @Then("user is not created and error message shown about password length")
+    public void newUserIsNotCreatedForTooShortPassword() {
+        pageHasContent("Create username and give password");
+        pageHasContent("username should have at least 3 characters");
+    }
+
+    @Then("user is not created and error password and password confirmation do not match is reported")
+    public void newUserIsNotCreatedForNonmatchingPasswords() {
+        pageHasContent("Create username and give password");
+        pageHasContent("password and password confirmation do not match");
+    }
+
     @When("correct username {string} and password {string} are given")
     public void correctUsernameAndPasswordAreGiven(String username, String password) {
         logInWith(username, password);
@@ -37,7 +97,7 @@ public class Stepdefs {
     public void correctUsernameAndIncorrectPasswordAreGiven(String username, String password) {
         logInWith(username, password);
     }
-    
+
     @When("incorrect username {string} and incorrect password {string} are given")
     public void incorrectUsernameAndIncorrectPasswordAreGiven(String username, String password) {
         logInWith(username, password);

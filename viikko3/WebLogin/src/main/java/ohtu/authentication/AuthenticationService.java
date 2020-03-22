@@ -30,6 +30,22 @@ public class AuthenticationService {
             status.addError("username is already taken");
         }
 
+        if (!username.matches("[a-z]*")) {
+            status.addError("username must contain only chars a-z");
+        }
+
+        if (!password.equals(passwordConfirmation)) {
+            status.addError("password and password confirmation do not match");
+        }
+
+        if (password.length() < 8) {
+            status.addError("username should have at least 3 characters");
+        }
+
+        if (!password.matches(".*\\d.*")) {
+            status.addError("password must contain at least one number");
+        }
+
         if (username.length()<3 ) {
             status.addError("username should have at least 3 characters");
         }
