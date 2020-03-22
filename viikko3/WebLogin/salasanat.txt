@@ -1,9 +1,0 @@
-pekka;akkep
-jukka;akkuj
-arto95043;salaisuus123
-arto12345;salainen
-esmeralda;2222
-arto52840;salaisuus123
-arto84864;salaisuus123
-arto38529;salaisuus123
-arto75650;salaisuus123
