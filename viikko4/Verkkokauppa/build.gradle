@@ -3,6 +3,14 @@ apply plugin: 'java'
 
 apply plugin: 'application'
 
+apply plugin: "jacoco"
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'ohtu.ohtuvarasto.Main'
+    }
+}
+
 repositories {
     jcenter()
 }
