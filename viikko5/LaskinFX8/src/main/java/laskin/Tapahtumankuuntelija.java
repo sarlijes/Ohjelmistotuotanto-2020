@@ -1,59 +1,43 @@
 package laskin;
 
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class Tapahtumankuuntelija implements EventHandler {
-    private TextField tuloskentta; 
-    private TextField syotekentta; 
-    private Button plus;
-    private Button miinus;
-    private Button nollaa;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Tapahtumankuuntelija implements EventHandler<ActionEvent> {
     private Button undo;
     private Sovelluslogiikka sovellus;
+    private Komento edellinen;
+
+    private Map<Button, Komento> komennot;
 
     public Tapahtumankuuntelija(TextField tuloskentta, TextField syotekentta, Button plus, Button miinus, Button nollaa, Button undo) {
-        this.tuloskentta = tuloskentta;
-        this.syotekentta = syotekentta;
-        this.plus = plus;
-        this.miinus = miinus;
-        this.nollaa = nollaa;
         this.undo = undo;
         this.sovellus = new Sovelluslogiikka();
+        komennot = new HashMap<>();
+        komennot.put(plus, new Pluslasku(sovellus, tuloskentta, syotekentta, nollaa, undo));
+        komennot.put(miinus, new Miinuslasku(sovellus, tuloskentta, syotekentta, nollaa, undo));
+        komennot.put(nollaa, new Nollaus(sovellus, tuloskentta, syotekentta, nollaa, undo));
     }
-    
+
     @Override
-    public void handle(Event event) {
-        int arvo = 0;
- 
-        try {
-            arvo = Integer.parseInt(syotekentta.getText());
-        } catch (Exception e) {
-        }
- 
-        if (event.getTarget() == plus) {
-            sovellus.plus(arvo);
-        } else if (event.getTarget() == miinus) {
-            sovellus.miinus(arvo);
-        } else if (event.getTarget() == nollaa) {
-            sovellus.nollaa();
+    public void handle(ActionEvent event) {
+
+        if (event.getTarget() != undo) {
+            Komento komento = komennot.get(event.getTarget());
+            komento.suorita();
+            edellinen = komento;
         } else {
-            System.out.println("undo pressed");
+            edellinen.peru();
+            edellinen = null;
         }
-        
-        int laskunTulos = sovellus.tulos();
-        
-        syotekentta.setText("");
-        tuloskentta.setText("" + laskunTulos);
-        
-        if ( laskunTulos==0) {
-            nollaa.disableProperty().set(true);
-        } else {
-            nollaa.disableProperty().set(false);
-        }
-        undo.disableProperty().set(false);
     }
+
 
 }
