@@ -1,8 +1,11 @@
 package ohtu.kivipaperisakset;
 
+import java.util.Random;
+
 public class Perustekoaly implements Tekoaly {
 
     private int siirto;
+    private static final String[] siirrot = {"k", "s", "p"};
 
     public Perustekoaly() {
         siirto = 0;
@@ -13,15 +16,14 @@ public class Perustekoaly implements Tekoaly {
         siirto = siirto % 3;
 
         if (siirto == 0) {
-            return "k";
+            return siirrot[0];
         } else if (siirto == 1) {
-            return "p";
+            return siirrot[1];
         } else {
-            return "s";
+            return siirrot[2];
         }
     }
 
     public void asetaSiirto(String ekanSiirto) {
-        // ei tehdä mitään 
     }
 }

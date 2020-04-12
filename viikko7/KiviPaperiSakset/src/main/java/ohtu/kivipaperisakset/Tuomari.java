@@ -47,7 +47,7 @@ public class Tuomari {
 
     public String toString() {
         String s = "Pelitilanne: " + ekanPisteet + " - " + tokanPisteet + "\n"
-                + "Tasapelit: " + tasapelit;
+                + "Tasapelit: " + tasapelit + "\n";
         return s;
     }
 }

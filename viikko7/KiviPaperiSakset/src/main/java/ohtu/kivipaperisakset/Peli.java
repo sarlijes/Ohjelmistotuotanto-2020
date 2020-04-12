@@ -16,7 +16,6 @@ public class Peli extends Kyselyoperaatio {
         this.vastustaja = vastustaja;
     }
 
-//    @Override
     public void pelaa() {
 
         Tuomari tuomari = new Tuomari();
@@ -29,10 +28,8 @@ public class Peli extends Kyselyoperaatio {
             while (onkoOkSiirto(ekanSiirto) && onkoOkSiirto(tokanSiirto)) {
                 tuomari.kirjaaSiirto(ekanSiirto, tokanSiirto);
                 System.out.println(tuomari);
-                System.out.println();
 
                 ekanSiirto = kysyEkanPelaajanSiirto(scanner);
-
                 tokanSiirto = kysyTokanPelaajanSiirto(scanner);
             }
         }
@@ -51,11 +48,9 @@ public class Peli extends Kyselyoperaatio {
         tokanSiirto = tekoaly.annaSiirto();
         System.out.println("Tietokone valitsi: " + tokanSiirto);
 
-
         while (onkoOkSiirto(ekanSiirto) && onkoOkSiirto(tokanSiirto)) {
             tuomari.kirjaaSiirto(ekanSiirto, tokanSiirto);
             System.out.println(tuomari);
-            System.out.println();
 
             ekanSiirto = kysyEkanPelaajanSiirto(scanner);
 
@@ -70,7 +65,6 @@ public class Peli extends Kyselyoperaatio {
         System.out.println(tuomari);
     }
 
-//    @Override
     public boolean onkoOkSiirto(String siirto) {
 
         if ("k".equals(siirto)) return true;
