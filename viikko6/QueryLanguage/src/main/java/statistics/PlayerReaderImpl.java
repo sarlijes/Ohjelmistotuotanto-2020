@@ -23,7 +23,7 @@ public class PlayerReaderImpl implements PlayerReader {
         ArrayList<Player> players = new ArrayList<Player>();
 
         while (scanner.hasNextLine()) {
-            String[] parts =  scanner.nextLine().split(";");
+            String[] parts = scanner.nextLine().split(";");
 
             if (parts.length > 3) {
                 players.add(new Player(parts[0].trim(), parts[1], extractInt(parts[3]), extractInt(parts[4])));
