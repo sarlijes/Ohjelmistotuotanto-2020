@@ -21,7 +21,7 @@ public class KPSPelaajaVsPelaaja {
 
             System.out.print("Ensimmäisen pelaajan siirto: ");
             ekanSiirto = scanner.nextLine();
-            
+
             System.out.print("Toisen pelaajan siirto: ");
             tokanSiirto = scanner.nextLine();
         }
