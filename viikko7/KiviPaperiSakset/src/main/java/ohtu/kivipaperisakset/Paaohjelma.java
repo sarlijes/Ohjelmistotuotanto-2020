@@ -8,26 +8,28 @@ public class Paaohjelma {
 
     public static void main(String[] args) {
 
+        PeliOlioTehdas olioTehdas = new PeliOlioTehdas();
+
         while (true) {
             System.out.println("\nValitse pelataanko"
                     + "\n (a) ihmistä vastaan "
                     + "\n (b) tekoälyä vastaan"
                     + "\n (c) parannettua tekoälyä vastaan"
-                    + "\nmuilla valinnoilla lopetataan");
+                    + "\nmuilla valinnoilla lopetetaan");
 
             String vastaus = scanner.nextLine();
             if (vastaus.endsWith("a")) {
                 System.out.println("peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s");
-                KPSPelaajaVsPelaaja kaksinpeli = new KPSPelaajaVsPelaaja();
-                kaksinpeli.pelaa();
+                Peli peli = olioTehdas.luoPelaajaVsPelaajaPeli();
+                peli.pelaa();
             } else if (vastaus.endsWith("b")) {
                 System.out.println("peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s");
-                KPSTekoaly yksinpeli = new KPSTekoaly();
-                yksinpeli.pelaa();
+                Peli peli = olioTehdas.luoPelaajaVsTekoalyPeli();
+                peli.pelaa();
             } else if (vastaus.endsWith("c")) {
                 System.out.println("peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s");
-                KPSParempiTekoaly pahaYksinpeli = new KPSParempiTekoaly();
-                pahaYksinpeli.pelaa();
+                Peli peli = olioTehdas.luoPelaajaVsSuperTekoalyPeli();
+                peli.pelaa();
             } else {
                 break;
             }
